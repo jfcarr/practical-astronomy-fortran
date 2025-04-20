@@ -4,7 +4,7 @@ Algorithms from "[Practical Astronomy with your Calculator or Spreadsheet](https
 
 If you're interested in this topic, please buy the book! It provides far more detail and context.
 
-## Library Functions - Status
+## Implementation Status of Library Functions
 
 ### Date/Time
 
