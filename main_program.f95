@@ -4,8 +4,12 @@ program main
 
    implicit none
 
-   ! call test_date_of_easter_1(2025)
    call test_date_of_easter(2003, 4, 20.0, 2003)
+
+   call test_civil_date_to_day_number(1, 1, 2000, 1)
+   call test_civil_date_to_day_number(3, 1, 2000, 61)
+   call test_civil_date_to_day_number(6, 1, 2003, 152)
+   call test_civil_date_to_day_number(11, 27, 2009, 331)
 end program main
 
 subroutine test_date_of_easter(input_year, expected_month, expected_day, expected_year)
@@ -32,5 +36,30 @@ subroutine test_date_of_easter(input_year, expected_month, expected_day, expecte
 
    if (assertion_passed .eqv. .true.) then
       print *, "[Date of Easter] PASSED"
+   end if
+end subroutine
+
+subroutine test_civil_date_to_day_number(input_month, input_day, input_year, expected_day_number)
+   use pa_datetime
+   use pa_assertions
+
+   ! input
+   integer :: input_month, input_day, input_year, expected_day_number
+   integer :: working_month, working_day, working_year
+   logical :: assertion_passed
+
+   ! output
+   integer :: actual_day_number
+
+   working_month = input_month
+   working_day = input_day
+   working_year = input_year
+
+   actual_day_number = civil_date_to_day_number(working_month, working_day, working_year)
+
+   assertion_passed = compare_integers(expected_day_number, actual_day_number, "[Civil Date to Day Number]")
+
+   if (assertion_passed .eqv. .true.) then
+      print *, "[Civil Date to Day Number] PASSED"
    end if
 end subroutine

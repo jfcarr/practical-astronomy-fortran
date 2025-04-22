@@ -9,7 +9,7 @@ If you're interested in this topic, please buy the book! It provides far more de
 ### Date/Time
 
 - [x] Calculate -> Date of Easter
-- [ ] Convert -> Civil Date to Day Number
+- [x] Convert -> Civil Date to Day Number
 - [ ] Convert -> Civil Time <-> Decimal Hours
 - [ ] Convert -> Local Civil Time <-> Universal Time
 - [ ] Convert -> Universal Time <-> Greenwich Sidereal Time
