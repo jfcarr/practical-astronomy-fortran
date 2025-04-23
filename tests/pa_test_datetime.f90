@@ -3,6 +3,8 @@ module pa_test_datetime
    use pa_assertions
 
    implicit none
+
+   integer,parameter :: ERROR_CODE_DATETIME = 1
 contains
    subroutine test_date_of_easter(input_year, expected_month, expected_day, expected_year)
       ! input
@@ -19,9 +21,9 @@ contains
 
       call get_date_of_easter(input_year, actual_month, actual_day, actual_year)
 
-      assertion_passed = compare_integers(expected_month, actual_month, "[Date of Easter - Month]")
-      assertion_passed = compare_real(expected_day, actual_day, "[Date of Easter - Day]")
-      assertion_passed = compare_integers(expected_year, actual_year, "[Date of Easter - Year]")
+      assertion_passed = compare_integers(expected_month, actual_month, "[Date of Easter - Month]", ERROR_CODE_DATETIME)
+      assertion_passed = compare_real(expected_day, actual_day, "[Date of Easter - Day]", ERROR_CODE_DATETIME)
+      assertion_passed = compare_integers(expected_year, actual_year, "[Date of Easter - Year]", ERROR_CODE_DATETIME)
 
       if (assertion_passed .eqv. .true.) then
          print *, "[Date of Easter] PASSED"
@@ -43,7 +45,7 @@ contains
 
       actual_day_number = civil_date_to_day_number(working_month, working_day, working_year)
 
-      assertion_passed = compare_integers(expected_day_number, actual_day_number, "[Civil Date to Day Number]")
+      assertion_passed = compare_integers(expected_day_number, actual_day_number, "[Civil Date to Day Number]", ERROR_CODE_DATETIME)
 
       if (assertion_passed .eqv. .true.) then
          print *, "[Civil Date to Day Number] PASSED"
