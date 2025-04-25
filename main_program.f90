@@ -12,6 +12,9 @@ program main
    call test_civil_date_to_day_number(6, 1, 2003, 152)
    call test_civil_date_to_day_number(11, 27, 2009, 331)
 
+   call test_civil_time_to_decimal_hours(18.0, 31.0, 27.0, 18.52416667)
+   call test_decimal_hours_to_civil_time(18.52416667, 18.0, 31.0, 27.0)
+
    call exit(SUCCESS_CODE)
 end program main
 
