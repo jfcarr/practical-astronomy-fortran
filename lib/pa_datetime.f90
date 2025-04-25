@@ -1,6 +1,7 @@
 module pa_datetime
    use pa_returns
    use pa_util
+   use pa_macros
 
    implicit none
 contains
@@ -101,4 +102,23 @@ contains
 
       civil_date_to_day_number = working_month + day
    end function
+
+   !> Convert Civil Time (hours,minutes,seconds) to Decimal Hours
+   real function civil_time_to_decimal_hours(hours, minutes, seconds)
+      real :: hours, minutes, seconds
+
+      civil_time_to_decimal_hours = hms_to_dh(hours, minutes, seconds)
+   end function
+
+   !> Convert Decimal Hours to Civil Time (hours,minutes,seconds)
+   subroutine decimal_hours_to_civil_time(decimal_hours, hours, minutes, seconds)
+      real, intent(in) :: decimal_hours
+      real, intent(out) :: hours
+      real, intent(out) :: minutes
+      real, intent(out) :: seconds
+
+      hours = decimal_hours_hour(decimal_hours);
+      minutes = decimal_hours_minute(decimal_hours);
+      seconds = decimal_hours_second(decimal_hours);
+   end subroutine
 end module pa_datetime

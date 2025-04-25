@@ -21,4 +21,17 @@ contains
 
       is_leap_year = return_value
    end function
+
+   !> Function to round a number to a specified number of decimal places
+   real function round_to_decimal(value, places)
+      real, intent(in) :: value
+      integer, intent(in) :: places
+      real :: factor
+
+      ! Calculate the factor based on the number of decimal places
+      factor = 10.0 ** real(places)
+
+      ! Round the value
+      round_to_decimal = nint(value * factor) / factor
+   end function
 end module

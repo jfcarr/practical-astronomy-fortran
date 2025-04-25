@@ -51,4 +51,35 @@ contains
          print *, "[Civil Date to Day Number] PASSED"
       end if
    end subroutine
+
+   subroutine test_civil_time_to_decimal_hours(input_hours, input_minutes, input_seconds, expected_decimal_hours)
+      real :: input_hours, input_minutes, input_seconds, expected_decimal_hours
+      real :: actual_decimal_hours
+      logical :: assertion_passed
+
+      actual_decimal_hours = civil_time_to_decimal_hours(input_hours, input_minutes, input_seconds)
+
+      assertion_passed = compare_real(expected_decimal_hours, actual_decimal_hours, &
+         "[Civil Time to Decimal Hours]", ERROR_CODE_DATETIME)
+
+      if (assertion_passed .eqv. .true.) then
+         print *, "[Civil Time to Decimal Hours] PASSED"
+      end if
+   end subroutine
+
+   subroutine test_decimal_hours_to_civil_time(input_decimal_hours, expected_hours, expected_minutes, expected_seconds)
+      real :: input_decimal_hours, expected_hours, expected_minutes, expected_seconds
+      real :: actual_hours, actual_minutes, actual_seconds
+      logical :: assertion_passed
+
+      call decimal_hours_to_civil_time(input_decimal_hours, actual_hours, actual_minutes, actual_seconds)
+
+      assertion_passed = compare_real(expected_hours, actual_hours, "[Decimal Hours to Civil Time]", ERROR_CODE_DATETIME)
+      assertion_passed = compare_real(expected_minutes, actual_minutes, "[Decimal Hours to Civil Time]", ERROR_CODE_DATETIME)
+      assertion_passed = compare_real(expected_seconds, actual_seconds, "[Decimal Hours to Civil Time]", ERROR_CODE_DATETIME)
+
+      if (assertion_passed .eqv. .true.) then
+         print *, "[Decimal Hours to Civil Time] PASSED"
+      end if
+   end subroutine
 end module
